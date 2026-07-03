@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Encuesta del Curso · Antigravity</title>
+  <meta name="description" content="Comparte tu opinión sobre el curso Antigravity y ayúdanos a mejorar tu experiencia de aprendizaje." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Fondo animado con partículas -->
+  <div class="bg-canvas" id="bgCanvas"></div>
+
+  <!-- Orbes de fondo decorativos -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <main class="page-wrapper">
+
+    <!-- Encabezado -->
+    <header class="hero">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Encuesta Activa
+      </div>
+      <h1 class="hero-title">
+        Curso <span class="gradient-text">Antigravity</span>
+      </h1>
+      <p class="hero-subtitle">
+        Tu opinión impulsa la mejora continua. Comparte tu experiencia de aprendizaje de forma anónima y segura.
+      </p>
+      <div class="progress-bar-wrapper">
+        <div class="progress-label">
+          <span>Tu progreso</span>
+          <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Formulario -->
+    <form class="survey-form" id="surveyForm" novalidate>
+
+      <!-- Pregunta 1 — ID Estudiante -->
+      <div class="card" id="card-1" data-card="1">
+        <div class="card-number">01</div>
+        <div class="card-content">
+          <label class="question-label" for="id_estudiante">
+            ¿Cuál es tu identificador de estudiante?
+            <span class="required-star">*</span>
+          </label>
+          <p class="question-hint">Ingresa tu código o número de matrícula tal como aparece en tu registro.</p>
+          <div class="input-wrapper">
+            <input
+              type="text"
+              id="id_estudiante"
+              name="id_estudiante"
+              class="text-input"
+              placeholder="Ej. EST-2024-001"
+              autocomplete="off"
+              maxlength="50"
+            />
+            <div class="input-glow"></div>
+          </div>
+          <span class="error-msg" id="error-id_estudiante">Por favor ingresa tu ID de estudiante.</span>
+        </div>
+      </div>
+
+      <!-- Pregunta 2 — Nivel de satisfacción -->
+      <div class="card" id="card-2" data-card="2">
+        <div class="card-number">02</div>
+        <div class="card-content">
+          <label class="question-label">
+            ¿Cuál es tu nivel de satisfacción general con el curso?
+            <span class="required-star">*</span>
+          </label>
+          <p class="question-hint">Desde muy insatisfecho hasta muy satisfecho.</p>
+          <div class="scale-group" id="scale-nivel_satisfaccion" role="group" aria-label="Nivel de satisfacción">
+            <div class="scale-labels">
+              <span>Muy insatisfecho</span>
+              <span>Muy satisfecho</span>
+            </div>
+            <div class="scale-buttons">
+              <button type="button" class="scale-btn" data-field="nivel_satisfaccion" data-value="1" aria-label="1 – Muy insatisfecho" id="sat-1">
+                <span class="scale-num">1</span>
+                <span class="scale-emoji">😞</span>
+              </button>
+              <button type="button" class="scale-btn" data-field="nivel_satisfaccion" data-value="2" aria-label="2 – Insatisfecho" id="sat-2">
+                <span class="scale-num">2</span>
+                <span class="scale-emoji">😕</span>
+              </button>
+              <button type="button" class="scale-btn" data-field="nivel_satisfaccion" data-value="3" aria-label="3 – Neutral" id="sat-3">
+                <span class="scale-num">3</span>
+                <span class="scale-emoji">😐</span>
+              </button>
+              <button type="button" class="scale-btn" data-field="nivel_satisfaccion" data-value="4" aria-label="4 – Satisfecho" id="sat-4">
+                <span class="scale-num">4</span>
+                <span class="scale-emoji">😊</span>
+              </button>
+              <button type="button" class="scale-btn" data-field="nivel_satisfaccion" data-value="5" aria-label="5 – Muy satisfecho" id="sat-5">
+                <span class="scale-num">5</span>
+                <span class="scale-emoji">🤩</span>
+              </button>
+            </div>
+          </div>
+          <input type="hidden" name="nivel_satisfaccion" id="nivel_satisfaccion" />
+          <span class="error-msg" id="error-nivel_satisfaccion">Por favor selecciona una opción.</span>
+        </div>
+      </div>
+
+      <!-- Pregunta 3 — Claridad del contenido -->
+      <div class="card" id="card-3" data-card="3">
+        <div class="card-number">03</div>
+        <div class="card-content">
+          <label class="question-label">
+            ¿Qué tan claro fue el contenido del curso?
+            <span class="required-star">*</span>
+          </label>
+          <p class="question-hint">Desde muy poco claro hasta muy claro.</p>
+          <div class="scale-group" id="scale-claridad_contenido" role="group" aria-label="Claridad del contenido">
+            <div class="scale-labels">
+              <span>Muy poco claro</span>
+              <span>Muy claro</span>
+            </div>
+            <div class="scale-buttons">
+              <button type="button" class="scale-btn" data-field="claridad_contenido" data-value="1" aria-label="1 – Muy poco claro" id="cla-1">
+                <span class="scale-num">1</span>
+                <span class="scale-emoji">🌫️</span>
+              </button>
+              <button type="button" class="scale-btn" data-field="claridad_contenido" data-value="2" aria-label="2 – Poco claro" id="cla-2">
+                <span class="scale-num">2</span>
+                <span class="scale-emoji">🌥️</span>
+              </button>
+              <button type="button" class="scale-btn" data-field="claridad_contenido" data-value="3" aria-label="3 – Moderadamente claro" id="cla-3">
+                <span class="scale-num">3</span>
+                <span class="scale-emoji">⛅</span>
+              </button>
+              <button type="button" class="scale-btn" data-field="claridad_contenido" data-value="4" aria-label="4 – Claro" id="cla-4">
+                <span class="scale-num">4</span>
+                <span class="scale-emoji">🌤️</span>
+              </button>
+              <button type="button" class="scale-btn" data-field="claridad_contenido" data-value="5" aria-label="5 – Muy claro" id="cla-5">
+                <span class="scale-num">5</span>
+                <span class="scale-emoji">☀️</span>
+              </button>
+            </div>
+          </div>
+          <input type="hidden" name="claridad_contenido" id="claridad_contenido" />
+          <span class="error-msg" id="error-claridad_contenido">Por favor selecciona una opción.</span>
+        </div>
+      </div>
+
+      <!-- Pregunta 4 — Aplicabilidad práctica -->
+      <div class="card" id="card-4" data-card="4">
+        <div class="card-number">04</div>
+        <div class="card-content">
+          <label class="question-label">
+            ¿Qué tan aplicable en la práctica consideras el contenido aprendido?
+            <span class="required-star">*</span>
+          </label>
+          <p class="question-hint">Desde nada aplicable hasta muy aplicable.</p>
+          <div class="scale-group" id="scale-aplicabilidad_practica" role="group" aria-label="Aplicabilidad práctica">
+            <div class="scale-labels">
+              <span>Nada aplicable</span>
+              <span>Muy aplicable</span>
+            </div>
+            <div class="scale-buttons">
+              <button type="button" class="scale-btn" data-field="aplicabilidad_practica" data-value="1" aria-label="1 – Nada aplicable" id="apl-1">
+                <span class="scale-num">1</span>
+                <span class="scale-emoji">📦</span>
+              </button>
+              <button type="button" class="scale-btn" data-field="aplicabilidad_practica" data-value="2" aria-label="2 – Poco aplicable" id="apl-2">
+                <span class="scale-num">2</span>
+                <span class="scale-emoji">🔧</span>
+              </button>
+              <button type="button" class="scale-btn" data-field="aplicabilidad_practica" data-value="3" aria-label="3 – Moderadamente aplicable" id="apl-3">
+                <span class="scale-num">3</span>
+                <span class="scale-emoji">⚙️</span>
+              </button>
+              <button type="button" class="scale-btn" data-field="aplicabilidad_practica" data-value="4" aria-label="4 – Aplicable" id="apl-4">
+                <span class="scale-num">4</span>
+                <span class="scale-emoji">🚀</span>
+              </button>
+              <button type="button" class="scale-btn" data-field="aplicabilidad_practica" data-value="5" aria-label="5 – Muy aplicable" id="apl-5">
+                <span class="scale-num">5</span>
+                <span class="scale-emoji">⚡</span>
+              </button>
+            </div>
+          </div>
+          <input type="hidden" name="aplicabilidad_practica" id="aplicabilidad_practica" />
+          <span class="error-msg" id="error-aplicabilidad_practica">Por favor selecciona una opción.</span>
+        </div>
+      </div>
+
+      <!-- Pregunta 5 — Comentarios adicionales -->
+      <div class="card" id="card-5" data-card="5">
+        <div class="card-number">05</div>
+        <div class="card-content">
+          <label class="question-label" for="comentarios_adicionales">
+            ¿Tienes algún comentario adicional?
+          </label>
+          <p class="question-hint">Comparte sugerencias, críticas constructivas o cualquier observación que consideres útil. (Opcional)</p>
+          <div class="textarea-wrapper">
+            <textarea
+              id="comentarios_adicionales"
+              name="comentarios_adicionales"
+              class="text-area"
+              placeholder="Escribe aquí tus comentarios..."
+              rows="5"
+              maxlength="800"
+            ></textarea>
+            <div class="char-counter"><span id="charCount">0</span> / 800</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón de envío -->
+      <div class="submit-wrapper">
+        <button type="submit" class="submit-btn" id="submitBtn">
+          <span class="submit-text">Enviar Encuesta</span>
+          <svg class="submit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+
+    </form>
+
+    <!-- Pantalla de éxito -->
+    <div class="success-screen" id="successScreen" aria-live="polite" hidden>
+      <div class="success-icon-wrapper">
+        <svg class="success-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h2 class="success-title">¡Gracias por tu respuesta!</h2>
+      <p class="success-subtitle">Tu opinión es muy valiosa para nosotros. Juntos hacemos que el curso Antigravity sea cada vez mejor.</p>
+      <button type="button" class="reset-btn" id="resetBtn">Enviar otra respuesta</button>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
